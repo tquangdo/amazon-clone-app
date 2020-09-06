@@ -12,7 +12,7 @@ import { auth } from './utils/config/firebase'
 function App() {
   const [, dispatch] = useStateValue()
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
+    const unsubscribe = auth.onAuthStateChanged(authUser => {
       if (authUser) {
         // the user is logged in
         dispatch({
@@ -27,7 +27,11 @@ function App() {
         })
       }
     })
-  }, [])
+    // cleanup
+    return () => {
+      unsubscribe()
+    }
+  }, [dispatch])
 
   return (
     <Router>

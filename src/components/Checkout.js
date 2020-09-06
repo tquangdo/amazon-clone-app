@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStateValue } from '../redux/StateProvider'
 import './Checkout.css'
 import CheckoutProduct from './CheckoutProduct'
 import Subtotal from './Subtotal'
+import { useHistory } from 'react-router-dom'
 
 function Checkout() {
-    const [{ cart }] = useStateValue()
-
+    const [{ user, cart }] = useStateValue()
+    const history = useHistory()
+    useEffect(() => {
+        if (!user) {
+            history.push('/login')
+        }
+    }, [user, history])
     return (
         <div className="checkout">
             <div className="checkout__left">
@@ -20,7 +26,7 @@ function Checkout() {
                         <h2 className="checkout__title">Giỏ hàng Amazon của bạn đang rỗng</h2>
                         <img
                             className="checkout__emptyImg"
-                            src="https://www.pinpng.com/pngs/m/607-6071299_shopping-cart-sign-empty-cart-icon-svg-hd.png"
+                            src="https://m.media-amazon.com/images/G/01/cart/empty/kettle-desaturated._CB445243794_.svg"
                             alt=""
                         />
                     </div>

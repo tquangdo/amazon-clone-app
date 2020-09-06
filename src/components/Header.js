@@ -14,6 +14,7 @@ function Header() {
             auth.signOut()
         }
     }
+    const toLink = (user) ? "/" : "/login"
 
     return (
         <nav className="header">
@@ -32,7 +33,7 @@ function Header() {
             {/* Three links */}
             <div className="header__nav">
                 {/* 1st link */}
-                <Link to={!user && "/login"} className="header__link">
+                <Link to={toLink} className="header__link">
                     <div onClick={onLogout} className="header__option">
                         <span className="header__optionLineOne">Xin chào {user?.email}</span>
                         <span className="header__optionLineTwo">{user ? 'Sign out' : 'Sign in'}</span>

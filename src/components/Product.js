@@ -3,21 +3,27 @@ import './Product.css'
 import Star from '@material-ui/icons/Star'
 import * as actType from '../redux/action/actiontype'
 import { useStateValue } from '../redux/StateProvider'
+import { useHistory } from 'react-router-dom'
 
 function Product({ id, title, price, rating, image }) {
-    const [, dispatch] = useStateValue()
+    const [{ user }, dispatch] = useStateValue()
+    const history = useHistory()
 
     const addToCart = () => {
-        dispatch({
-            type: actType.ADD_TO_CART,
-            itemOfCart: {
-                id,
-                title,
-                price,
-                rating,
-                image,
-            },
-        })
+        if (user) {
+            dispatch({
+                type: actType.ADD_TO_CART,
+                itemOfCart: {
+                    id,
+                    title,
+                    price,
+                    rating,
+                    image,
+                },
+            })
+        } else {
+            history.push('/login')
+        }
     }
 
     return (
