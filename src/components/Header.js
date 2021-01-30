@@ -35,7 +35,7 @@ function Header() {
                 {/* 1st link */}
                 <Link to={toLink} className="header__link">
                     <div onClick={onLogout} className="header__option">
-                        <span className="header__optionLineOne">Xin chào {user?.email}</span>
+                        <span className="header__optionLineOne">Xin chào {user ? user.email : 'Khách'}</span>
                         <span className="header__optionLineTwo">{user ? 'Sign out' : 'Sign in'}</span>
                     </div>
                 </Link>

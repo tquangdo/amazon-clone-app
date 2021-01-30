@@ -32,6 +32,7 @@ function Checkout() {
                     </div>
                 ) : (
                         <div>
+                            <h3>Xin chào, {user?.email}</h3>
                             <h2 className="checkout__title">Sản phẩm trong giỏ hàng:</h2>
                             {cart.map((cart_item, chiso) => (
                                 <CheckoutProduct
